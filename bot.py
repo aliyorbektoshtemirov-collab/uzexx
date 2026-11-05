@@ -100,6 +100,13 @@ class Engine:
         lang = kb.detect_lang(text, default_lang)
         if kb.is_injection(text):
             return kb.OFFTOPIC[lang], False, False
+        t = kb.norm(text).strip(" ?!.")
+        m = re.fullmatch(r"(20[2][2-6])(?:[- ]?(?:yil\w*|год\w*|г))?", t)
+        if m:  # faqat yil yozilsa -> shu yil statistikasi
+            q = f"{m.group(1)}-yilda bitimlar statistikasi" if lang == "uz" else f"статистика сделок {m.group(1)}"
+            return md.answer(self.market, q, lang), False, False
+        if re.fullmatch(r"(bitim\w*|statistika\w*|demo\w*|сделк\w*|статистик\w*|демо\w*)", t):
+            return TEXTS[lang]["stats_hint"], False, False
         if kb.needs_zakalat_clarification(text):
             return kb.CLARIFY_ZAKALAT[lang], False, False
         ds = md.answer(self.market, text, lang)  # bitim raqami / statistika
