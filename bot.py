@@ -122,9 +122,14 @@ class Engine:
         ds = md.answer(self.market, text, lang)  # bitim raqami / statistika
         if ds:
             return ds, False, False
+        entries = self.kb.search(text, lang)
+        if not entries and md.parse_filters(text).get("product"):  # "2025 shakar", "shakarchi" -> mahsulot statistikasi
+            q = text + (" bitimlar statistikasi" if lang == "uz" else " статистика сделок")
+            ds = md.answer(self.market, q, lang)
+            if ds:
+                return ds, False, False
         if not kb.is_on_topic(text):
             return kb.OFFTOPIC[lang], False, False
-        entries = self.kb.search(text, lang)
         if not entries:
             return kb.NO_INFO[lang] + "\n\n" + TOPICS_HINT[lang], False, False
         if self.ai:

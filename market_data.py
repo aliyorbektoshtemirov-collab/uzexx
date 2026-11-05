@@ -241,7 +241,9 @@ def parse_filters(text):
     m = re.search(r"\b(20[2][2-6])\b", t)
     if m: f["year"] = int(m.group(1))
     for k, v in PRODUCT_ALIASES.items():
-        if re.search(r"(?<!\w)" + re.escape(k), t): f["product"] = v; break
+        # qisqa kalitlar (un, ip, suv, gaz) faqat butun so'z (+qo'shimcha) sifatida; "universitet" -> un emas
+        pat = (r"(?<!\w)" + re.escape(k) + r"(?:lar|ni|ning|da|ga|dan)?(?!\w)") if len(k) <= 3 else (r"(?<!\w)" + re.escape(k))
+        if re.search(pat, t): f["product"] = v; break
     for k, v in sorted(REGION_ALIASES.items(), key=lambda kv: -len(kv[0])):
         if k in t: f["region"] = v; break
     if re.search(r"eksport|экспорт", t): f["contract_type"] = "Экспортный"
