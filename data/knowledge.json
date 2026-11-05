@@ -1,0 +1,226 @@
+{
+ "_note": "Boshlang‘ich (seed) baza: faqat umumiy, tekshirilishi oson faktlar. Aniq summa/muddat/rekvizitlar YO‘Q. Topshirishdan oldin jamoa rasmiy manbalar bilan tekshirsin.",
+ "entries": [
+  {
+   "id": "uzex_about",
+   "keywords": {
+    "uz": [
+     "uzex nima",
+     "birja nima",
+     "uzex haqida",
+     "tovar-xom ashyo birjasi"
+    ],
+    "ru": [
+     "что такое uzex",
+     "что такое узекс",
+     "что такое биржа",
+     "об uzex",
+     "про uzex"
+    ]
+   },
+   "facts": {
+    "uz": "UZEX — O‘zbekiston Respublika tovar-xom ashyo birjasi. Birja savdolari, bitimlar va elektron platformalar haqida rasmiy ma’lumot UZEX saytida e’lon qilinadi.",
+    "ru": "UZEX — Узбекская республиканская товарно-сырьевая биржа. Официальная информация о биржевых торгах, сделках и электронных платформах публикуется на сайте UZEX."
+   },
+   "sources": [
+    {
+     "name": "UZEX",
+     "url": "https://uzex.uz"
+    }
+   ]
+  },
+  {
+   "id": "registration",
+   "keywords": {
+    "uz": [
+     "ro‘yxatdan",
+     "royxatdan",
+     "ro‘yxat",
+     "registratsiya",
+     "akkaunt",
+     "kabinet"
+    ],
+    "ru": [
+     "регистрац",
+     "зарегистр",
+     "кабинет",
+     "аккаунт"
+    ]
+   },
+   "facts": {
+    "uz": "Ro‘yxatdan o‘tish UZEX rasmiy platformalari orqali amalga oshiriladi. Talab qilinadigan hujjatlar va shartlar o‘zgarishi mumkin, shuning uchun aniq ro‘yxatni rasmiy saytdan yoki call-markaz 11-07 dan oling.",
+    "ru": "Регистрация проходит через официальные платформы UZEX. Требуемые документы и условия могут меняться — точный перечень уточняйте на официальном сайте или в колл-центре 11-07."
+   },
+   "sources": [
+    {
+     "name": "UZEX",
+     "url": "https://uzex.uz"
+    }
+   ]
+  },
+  {
+   "id": "eri",
+   "keywords": {
+    "uz": [
+     "eri",
+     "elektron raqamli imzo",
+     "imzo",
+     "e-imzo",
+     "kalit"
+    ],
+    "ru": [
+     "эцп",
+     "эри",
+     "электронная подпись",
+     "e-imzo",
+     "подпись",
+     "ключ"
+    ]
+   },
+   "facts": {
+    "uz": "Platformalarda hujjatlarni imzolash uchun elektron raqamli imzo (ERI) ishlatiladi; ERI kaliti odatda E-IMZO dasturi orqali ishlatiladi. ERI olish va yangilash tartibini rasmiy manbadan tekshiring.",
+    "ru": "Для подписания документов на платформах используется электронная цифровая подпись (ЭЦП/ERI); ключ обычно используется через приложение E-IMZO. Порядок получения и продления проверяйте по официальным источникам."
+   },
+   "sources": [
+    {
+     "name": "E-IMZO",
+     "url": "https://e-imzo.uz"
+    }
+   ]
+  },
+  {
+   "id": "zakalat_exchange",
+   "keywords": {
+    "uz": [
+     "zakalat birja",
+     "zakalat",
+     "garov",
+     "depozit"
+    ],
+    "ru": [
+     "залог",
+     "закалат",
+     "депозит",
+     "гарантийн"
+    ]
+   },
+   "facts": {
+    "uz": "Birja savdolarida ishtirok etish uchun zakalat (garov) talab qilinishi mumkin. Zakalat miqdori shartnoma kartochkasida ko‘rsatiladi; aniq miqdor, to‘lov rekvizitlari va muddatlar bu yerda keltirilmaydi — ularni rasmiy manba yoki 11-07 dan tasdiqlang.",
+    "ru": "Для участия в биржевых торгах может требоваться залог (закалат). Размер указывается в карточке контракта; точные суммы, реквизиты и сроки здесь не приводятся — подтвердите их по официальному источнику или по 11-07."
+   },
+   "sources": [
+    {
+     "name": "UZEX",
+     "url": "https://uzex.uz"
+    }
+   ]
+  },
+  {
+   "id": "zakalat_procurement",
+   "keywords": {
+    "uz": [
+     "davlat xarid zakalat",
+     "xarid zakalati"
+    ],
+    "ru": [
+     "закупк залог"
+    ]
+   },
+   "facts": {
+    "uz": "Davlat xaridlarida ta’minot talablari har bir xarid shartlarida alohida belgilanadi. Aniq qoidalarni xarid hujjatlari va rasmiy platformadan tekshiring.",
+    "ru": "В госзакупках требования к обеспечению устанавливаются условиями каждой закупки. Точные правила проверяйте в закупочной документации и на официальной платформе."
+   },
+   "sources": [
+    {
+     "name": "UZEX Davlat xaridlari",
+     "url": "https://xarid.uzex.uz"
+    }
+   ]
+  },
+  {
+   "id": "procurement",
+   "keywords": {
+    "uz": [
+     "davlat xarid",
+     "xarid",
+     "tender",
+     "xarid.uzex"
+    ],
+    "ru": [
+     "госзакуп",
+     "государственные закупки",
+     "закупк",
+     "тендер"
+    ]
+   },
+   "facts": {
+    "uz": "Davlat xaridlari bo‘yicha rasmiy elektron platforma UZEX xarid portalida joylashgan. Xarid usullari va shartlari har bir e’londa ko‘rsatiladi.",
+    "ru": "Официальная электронная платформа госзакупок — портал закупок UZEX. Способы и условия закупки указываются в каждом объявлении."
+   },
+   "sources": [
+    {
+     "name": "UZEX Davlat xaridlari",
+     "url": "https://xarid.uzex.uz"
+    }
+   ]
+  },
+  {
+   "id": "trading_rules",
+   "keywords": {
+    "uz": [
+     "savdo qoidalari",
+     "auksion",
+     "savdo",
+     "bitim tuzish",
+     "shartnoma"
+    ],
+    "ru": [
+     "правила торгов",
+     "аукцион",
+     "торги",
+     "заключить сделку",
+     "договор"
+    ]
+   },
+   "facts": {
+    "uz": "Birja savdolari auksion shaklida o‘tadi (masalan, ingliz yoki teskari auksion). Savdo qoidalarining amaldagi matni rasmiy saytda; aniq muddat va talablar uchun u yerga yoki 11-07 ga murojaat qiling.",
+    "ru": "Биржевые торги проходят в формате аукционов (например, английский или обратный аукцион). Актуальный текст правил торгов — на официальном сайте; точные сроки и требования уточняйте там или по 11-07."
+   },
+   "sources": [
+    {
+     "name": "UZEX",
+     "url": "https://uzex.uz"
+    }
+   ]
+  },
+  {
+   "id": "contact",
+   "keywords": {
+    "uz": [
+     "call-markaz",
+     "telefon",
+     "aloqa",
+     "11-07",
+     "murojaat"
+    ],
+    "ru": [
+     "колл-центр",
+     "телефон",
+     "связь",
+     "11-07",
+     "обратиться"
+    ]
+   },
+   "facts": {
+    "uz": "UZEX call-markazi: 11-07.",
+    "ru": "Колл-центр UZEX: 11-07."
+   },
+   "sources": [
+    {
+     "name": "UZEX",
+     "url": "https://uzex.uz"
+    }
+   ]
+  }
+ ]
+}
