@@ -7,6 +7,7 @@ import market_data as md
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(HERE, "data")
 log = logging.getLogger("uzex_bot")
+BOT_VERSION = "v4-2026-11-05 (yil/bitim fix)"
 
 TEXTS = {
  "uz": {"choose": "Tilni tanlang / Выберите язык:", "menu": "Asosiy menyu. Tugmani bosing yoki savolingizni yozing:",
@@ -179,6 +180,9 @@ def main():
                                      InlineKeyboardButton("🇷🇺 Русский", callback_data="lang:ru")]])
         await update.message.reply_text(TEXTS["uz"]["choose"], reply_markup=kbd)
 
+    async def version(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
+        await update.message.reply_text(f"Versiya: {BOT_VERSION}")
+
     async def on_lang(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
         q = update.callback_query; await q.answer()
         lang = q.data.split(":")[1] if q.data.startswith("lang:") else "uz"
@@ -228,6 +232,8 @@ def main():
     except InvalidToken:
         sys.exit("Telegram token noto‘g‘ri. @BotFather'dan tekshiring.")
     app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("version", version))
+    log.info("Bot ishga tushdi, versiya: %s", BOT_VERSION)
     app.add_handler(CallbackQueryHandler(on_lang, pattern=r"^lang:"))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, on_text))
     app.add_error_handler(on_error)
