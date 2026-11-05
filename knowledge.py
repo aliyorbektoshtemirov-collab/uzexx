@@ -1,5 +1,5 @@
 """Ikki tilli bilimlar bazasi: kalit so'zli qidiruv, til aniqlash, mavzu va aniqlashtirish qoidalari."""
-import json, os, re
+import difflib, json, os, re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CALL_CENTER = "11-07"
@@ -94,3 +94,37 @@ class Knowledge:
             return NO_INFO[lang]
         body = "\n\n".join(self.fact(e, lang) for e in entries)
         return body + "\n\n" + self.sources_text(entries, lang)
+
+
+_VOCAB = None
+
+
+def _vocab():
+    global _VOCAB
+    if _VOCAB is None:
+        import market_data as md
+        words = ["bitim", "bitimlar", "statistika", "statistikasi", "aylanma", "viloyat", "hudud", "birja", "savdo",
+                 "savdolari", "xarid", "xaridlari", "davlat", "zakalat", "garov", "ro‘yxatdan", "royxatdan",
+                 "ro‘yxat", "imzo", "narx", "narxlar", "shartnoma", "auksion", "eksport", "forvard", "fyuchers",
+                 "bekor", "сделки", "сделка", "статистика", "регистрация", "залог", "закупки",
+                 "госзакупки", "биржа", "торги", "оборот", "область", "регион", "цены", "договор", "аукцион",
+                 "экспорт", "форвард", "фьючерс", "сколько", "аннулированные"]
+        words += list(md.PRODUCT_ALIASES) + list(md.REGION_ALIASES)
+        _VOCAB = list(dict.fromkeys(norm(w) for w in words if len(w) >= 4))  # tartib: asosiy so'zlar birinchi
+    return _VOCAB
+
+
+def autocorrect(text):
+    """Imlo xatolarini tuzatadi: 'bitm' -> 'bitim', 'ruyxatdan' -> 'royxatdan'. Faqat 4+ harfli, juda o'xshash so'zlar."""
+    vocab = _vocab(); known = set(vocab)
+    def fix(m):
+        w = m.group(0); lw = norm(w)
+        if len(lw) < 4 or lw in known or lw.isdigit():
+            return w
+        c = difflib.get_close_matches(lw, vocab, n=5, cutoff=0.85)
+        if not c:
+            return w
+        best = max(difflib.SequenceMatcher(None, lw, x).ratio() for x in c)
+        # teng ballda asosiy (ro'yxatda oldinroq) so'z tanlanadi
+        return next(x for x in vocab if x in c and difflib.SequenceMatcher(None, lw, x).ratio() == best)
+    return re.sub(r"[\w‘]+", fix, text)

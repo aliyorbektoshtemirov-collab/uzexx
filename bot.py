@@ -36,6 +36,12 @@ SYSTEM_PROMPT = {
 }
 
 
+TOPICS_HINT = {
+    "uz": "Men quyidagilar bo‘yicha yordam bera olaman: ro‘yxatdan o‘tish, ERI, zakalat, davlat xaridlari, savdo qoidalari va demo bitimlar statistikasi (masalan: «2025-yilda shakar bitimlari»).",
+    "ru": "Я могу помочь по темам: регистрация, ЭЦП, залог, госзакупки, правила торгов и статистика демо-сделок (например: «сделки по сахару 2025»).",
+}
+
+
 class AIError(Exception):
     pass
 
@@ -99,6 +105,7 @@ class Engine:
     def reply(self, text, default_lang="uz"):
         """-> (matn, ai_ishlatildimi, ai_yiqildimi)"""
         lang = kb.detect_lang(text, default_lang)
+        text = kb.autocorrect(text)  # imlo xatolarini tuzatish
         if kb.is_injection(text):
             return kb.OFFTOPIC[lang], False, False
         t = kb.norm(text).strip(" ?!.")
@@ -106,6 +113,8 @@ class Engine:
         if m:  # faqat yil yozilsa -> shu yil statistikasi
             q = f"{m.group(1)}-yilda bitimlar statistikasi" if lang == "uz" else f"статистика сделок {m.group(1)}"
             return md.answer(self.market, q, lang), False, False
+        if re.fullmatch(r"(narx\w*|цен[аыу]?|цены)", t):
+            return TEXTS[lang]["prices"], False, False
         if re.fullmatch(r"(bitim\w*|statistika\w*|demo\w*|сделк\w*|статистик\w*|демо\w*)", t):
             return TEXTS[lang]["stats_hint"], False, False
         if kb.needs_zakalat_clarification(text):
@@ -117,7 +126,7 @@ class Engine:
             return kb.OFFTOPIC[lang], False, False
         entries = self.kb.search(text, lang)
         if not entries:
-            return kb.NO_INFO[lang], False, False
+            return kb.NO_INFO[lang] + "\n\n" + TOPICS_HINT[lang], False, False
         if self.ai:
             ctx = "\n".join(f"- {self.kb.fact(e, lang)}" for e in entries)
             user = ("TASDIQLANGAN PARCHALAR:\n" if lang == "uz" else "ПРОВЕРЕННЫЕ ФРАГМЕНТЫ:\n") + ctx + \

@@ -267,7 +267,8 @@ def is_market_question(text):
     about = re.search(r"bitim|сделк|demo|демо|statistik|статистик|aylanma|оборот", t)
     intent = re.search(r"nechta|сколько|statistik|статистик|aylanma|оборот|demo|демо|eng ko.p|"
                        r"больше всего|наибольш|bekor|аннулир|jami|всего|hajm|объ[её]м", t)
-    return bool(about and intent)
+    # "2025 yildagi bitim", "shakar bitimlari", "сделки по сахару" kabi filtr (yil/mahsulot/hudud/tur) bor savollar ham statistika
+    return bool(about and (intent or parse_filters(text)))
 
 
 def money(x, lang):
